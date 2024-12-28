@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.getElementById("error-message");
   const weatherResult = document.getElementById("weather-result");
 
+  cityInput.addEventListener("input", () => {
+    errorMessage.classList.add("hidden");
+  });
+
   searchBtn.addEventListener("click", async () => {
     const cityName = cityInput.value.trim();
 
@@ -14,12 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    errorMessage.classList.add("hidden"); // not working
-
+    errorMessage.classList.add("hidden");
+    weatherResult.innerHTML = "<p>Loading...</p>";
     weatherResult.classList.add("hidden");
-    const weatheResult = document.createElement("p");
-    weatheResult.textContent = "Loading...";
-    // console.log(`City Name : ${cityName}`);
 
     try {
       const apiKey = "10894d405d2c8a356439fe6d3c557053";
@@ -33,14 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (data.cod === 200) {
-        const weatherResult = document.getElementById("weather-result");
-
-        const weatherName = document.createElement("h2");
-        weatherName.textContent = `Weather in ${data.name}`;
-        weatherResult.appendChild(weatherName);
-        document.body.appendChild(weatherResult);
         // leme use innerhtml for time sake, not recommended so will remove it
         weatherResult.innerHTML = `
+          <h2>Weather in ${data.name}</h2>
           <p>Temperature: ${data.main.temp}°C</p>
           <p>Feels Like: ${data.main.feels_like}°C</p>
           <p>Condition: ${data.weather[0].description}</p>
