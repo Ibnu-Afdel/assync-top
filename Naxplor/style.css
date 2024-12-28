@@ -87,3 +87,19 @@ main {
 #date-picker button:hover {
     background-color: #1e1e2f;
 }
+
+#random-apod {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: #ffffff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#random-apod:hover {
+    background-color: #1c7cd6;
+}

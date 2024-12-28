@@ -38,4 +38,19 @@ document.getElementById("fetch-apod").addEventListener("click", async () => {
   }
 });
 
+document.getElementById("random-apod").addEventListener("click", async () => {
+  const randomDate = new Date(
+    new Date().getTime() - Math.random() * 365 * 24 * 60 * 60 * 1000 * 10,
+  )
+    .toISOString()
+    .split("T")[0];
+  const response = await fetch(
+    `${ASTRO_PIC_OF_THE_DAY_ENDPOINT}&date=${randomDate}`,
+  );
+  const data = await response.json();
+  displayAPOD(data);
+});
+
 fetchAPOD();
+
+// Random date in the last 10 years
