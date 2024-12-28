@@ -28,6 +28,8 @@ function displayAPOD(data) {
 document.getElementById("fetch-apod").addEventListener("click", async () => {
   const selectedDate = document.getElementById("apod-date").value;
   if (selectedDate) {
+    const topTitle = document.querySelector("#top-title");
+    topTitle.textContent = `Astronomy Picture of (${selectedDate})`;
     const response = await fetch(
       `${ASTRO_PIC_OF_THE_DAY_ENDPOINT}&date=${selectedDate}`,
     );
@@ -44,6 +46,8 @@ document.getElementById("random-apod").addEventListener("click", async () => {
   )
     .toISOString()
     .split("T")[0];
+  const topTitle = document.querySelector("#top-title");
+  topTitle.textContent = `Astronomy Picture of (${randomDate})`;
   const response = await fetch(
     `${ASTRO_PIC_OF_THE_DAY_ENDPOINT}&date=${randomDate}`,
   );
@@ -52,5 +56,3 @@ document.getElementById("random-apod").addEventListener("click", async () => {
 });
 
 fetchAPOD();
-
-// Random date in the last 10 years
