@@ -25,4 +25,17 @@ function displayAPOD(data) {
   apodDescription.textContent = data.explanation;
 }
 
+document.getElementById("fetch-apod").addEventListener("click", async () => {
+  const selectedDate = document.getElementById("apod-date").value;
+  if (selectedDate) {
+    const response = await fetch(
+      `${ASTRO_PIC_OF_THE_DAY_ENDPOINT}&date=${selectedDate}`,
+    );
+    const data = await response.json();
+    displayAPOD(data);
+  } else {
+    alert("Please select a date!");
+  }
+});
+
 fetchAPOD();
