@@ -26,10 +26,11 @@ main {
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
+    flex-wrap: wrap; /* Allows wrapping for small devices */
 }
 
 #apod-image {
-    flex: 3;
+    flex: 3; /* Default: 60–70% width for the image */
     max-width: 70%;
 }
 
@@ -41,17 +42,30 @@ main {
 }
 
 #apod-text {
-    flex: 2;
+    flex: 2; /* Default: Remaining 30–40% width for the text */
     max-width: 40%;
     text-align: left;
 }
 
-#apod-text h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    #apod-container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+    }
 
-#apod-text p {
-    font-size: 1em;
-    line-height: 1.6;
+    #apod-image,
+    #apod-text {
+        max-width: 90%; /* Full-width with some margin */
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    #apod-text h3 {
+        font-size: 1.3em;
+    }
+
+    #apod-text p {
+        font-size: 1em;
+        line-height: 1.4;
+    }
 }
