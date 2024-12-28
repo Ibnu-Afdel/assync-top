@@ -15,11 +15,14 @@ async function fetchAPOD() {
 }
 
 function displayAPOD(data) {
-  const apodContainer = document.getElementById("apod-container");
-  apodContainer.innerHTML = `
-          <img src="${data.url}" alt="${data.title}">
-          <h3>${data.title}</h3>
-          <p>${data.explanation}</p>
-      `;
+  const apodImage = document.querySelector("#apod-image img");
+  const apodTitle = document.querySelector("#apod-text h3");
+  const apodDescription = document.querySelector("#apod-text p");
+
+  apodImage.src = data.url;
+  apodImage.alt = data.title;
+  apodTitle.textContent = data.title;
+  apodDescription.textContent = data.explanation;
 }
+
 fetchAPOD();
